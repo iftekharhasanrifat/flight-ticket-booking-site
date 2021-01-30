@@ -104,21 +104,18 @@
             <button id="book-button" class="btn-style">Book
                 Now</button>
         </div>
-
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
                 veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
                 voluptatibus quam</p>
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Confirm your purchase?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="calculations">
@@ -167,7 +164,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="decline-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                        <button id="decline-button" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Decline</button>
                         <button id="accept-button" type="button" class="btn btn-primary"
                             data-bs-dismiss="modal">Accept</button>
                     </div>
@@ -228,6 +226,7 @@
         function updateSpanText(id, inputValue) {
             document.getElementById(id).innerText = inputValue;
         }
+
         // function to reset input values
         function resetInputValues() {
             updateSpanText('modal-first-class-count', 0);
@@ -262,7 +261,12 @@
                 alert('please enter the number of tickets');
             }
             else {
-                if (firstClassCount > 0 && economyCount > 0) {
+                if (firstClassCount < 0 || economyCount < 0) {
+                    alert("Input can't be negative");
+                    resetInputValues();
+                    calculateTotal();
+                }
+                else if (firstClassCount > 0 || economyCount > 0) {
                     const firstClassPrice = firstClassCount * 150;
                     const economyPrice = economyCount * 100;
                     const subTotal = firstClassPrice + economyPrice;
@@ -279,11 +283,6 @@
                     document.getElementById('exampleModal').style.display = 'block';
                     document.getElementById('exampleModal').style.opacity = 1;
                 }
-                else {
-                    alert("Input can't be negative");
-                    resetInputValues();
-                    calculateTotal();
-                }
             }
         });
         document.getElementById('accept-button').addEventListener('click', function () {
@@ -293,7 +292,7 @@
             resetInputValues();
             calculateTotal();
         });
-        document.getElementById('decline-button').addEventListener('click',function(){
+        document.getElementById('decline-button').addEventListener('click', function () {
             document.getElementById('exampleModal').style.display = 'none';
         })
     </script>
