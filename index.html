@@ -147,7 +147,6 @@
                                     <p>$<span id="modal-sub-total">0</span></p>
                                 </div>
                             </div>
-
                             <div class="amount">
                                 <div class="left">
                                     <p>Charge 10% VAT</p>
@@ -168,7 +167,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
+                        <button id="decline-button" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Decline</button>
                         <button id="accept-button" type="button" class="btn btn-primary"
                             data-bs-dismiss="modal">Accept</button>
                     </div>
@@ -293,6 +292,9 @@
             resetInputValues();
             calculateTotal();
         });
+        document.getElementById('decline-button').addEventListener('click',function(){
+            document.getElementById('exampleModal').style.display = 'none';
+        })
     </script>
 </body>
 
